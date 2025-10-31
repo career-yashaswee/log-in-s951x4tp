@@ -42,7 +42,6 @@ router.post('/login', async (req: Request, res: Response) => {
       user: userWithoutPassword,
     });
   } catch (error) {
-    // TODO: Handle errors - log and return 500 status
     console.error('Login error:', error);
     res.status(500).json({
       error: 'Internal server error',
