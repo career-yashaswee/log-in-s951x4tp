@@ -6,42 +6,22 @@ const router = express.Router();
 
 router.post('/login', async (req: Request, res: Response) => {
   try {
-    // Validate request body with Zod
-    const validation = validateLogin(req.body);
-
-    if (!validation.success) {
-      return res.status(400).json({
-        error: 'Validation failed',
-        details: validation.error.errors,
-      });
-    }
-
-    const { username, password } = validation.data;
-
-    // Find user in database
-    const user = await findUserByUsername(username);
-
-    if (!user) {
-      return res.status(401).json({
-        error: 'Invalid credentials',
-      });
-    }
-
-    // Check password (simple comparison for now - no hashing for simplicity)
-    if (user.password !== password) {
-      return res.status(401).json({
-        error: 'Invalid credentials',
-      });
-    }
-
-    // Success - return user data (without password)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _, ...userWithoutPassword } = user;
-    res.status(200).json({
-      message: 'Login successful',
-      user: userWithoutPassword,
-    });
+    // TODO: Validate request body using validateLogin()
+    // Hint: It returns a result with success/error
+    // TODO: If validation fails, return 400 status with error message
+    // Hint: res.status(400).json({ error: 'Validation failed', details: ... })
+    // TODO: Extract username and password from validated data
+    // TODO: Find user in database using findUserByUsername()
+    // TODO: If user not found, return 401 status with 'Invalid credentials'
+    // TODO: Check if password matches
+    // Hint: Compare user.password with the password from request
+    // If they don't match, return 401 with 'Invalid credentials'
+    // TODO: Remove password from user object before sending response
+    // Hint: Use destructuring: const { password, ...userWithoutPassword } = user
+    // TODO: Return 200 status with success message and user data (without password)
+    // Hint: res.status(200).json({ message: 'Login successful', user: ... })
   } catch (error) {
+    // TODO: Handle errors - log and return 500 status
     console.error('Login error:', error);
     res.status(500).json({
       error: 'Internal server error',

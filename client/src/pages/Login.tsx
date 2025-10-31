@@ -4,41 +4,31 @@ import { toast } from 'sonner';
 import { LoginForm } from '@/components/login-form';
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  // TODO: Add state management for username, password, and loading
+  // Hint: Use useState hook for each
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+
+    // TODO: Set loading state to true
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        // Show error toast for invalid credentials
-        toast.error(data.error || 'Login failed');
-        setLoading(false);
-        return;
-      }
-
-      // Store user data in localStorage
-      localStorage.setItem('user', JSON.stringify(data.user));
-
-      // Navigate to dashboard
-      navigate('/dashboard');
+      // TODO: Make a POST request to '/api/auth/login'
+      // Hint: Use fetch() with method: 'POST', headers, and body
+      // The body should be JSON with username and password
+      // TODO: Parse the response as JSON
+      // TODO: Check if response.ok
+      // If not ok: show error toast and set loading to false, then return
+      // Hint: toast.error() for errors
+      // TODO: Store user data in localStorage
+      // Hint: localStorage.setItem('user', JSON.stringify(data.user))
+      // TODO: Navigate to dashboard
+      // Hint: navigate('/dashboard')
     } catch {
-      toast.error('Network error. Please try again.');
-      setLoading(false);
+      // TODO: Handle network errors
+      // Hint: Show error toast and set loading to false
     }
   };
 
@@ -46,11 +36,11 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md">
         <LoginForm
-          username={username}
-          password={password}
-          loading={loading}
-          onUsernameChange={setUsername}
-          onPasswordChange={setPassword}
+          username={''}
+          password={''}
+          loading={false}
+          onUsernameChange={() => {}}
+          onPasswordChange={() => {}}
           onSubmit={handleSubmit}
         />
       </div>

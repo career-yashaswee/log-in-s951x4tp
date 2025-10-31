@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-// Use path.resolve from process.cwd() for compatibility with both ESM and Jest
-// This works because the server always runs from the project root
+// Path to the JSON database file
+// This uses process.cwd() for compatibility with both ESM and Jest
 const DB_PATH = path.resolve(process.cwd(), 'data/users.json');
 
 export interface User {
@@ -21,25 +21,36 @@ async function ensureDB(): Promise<void> {
   }
 }
 
-// Read all users
+// Read all users from the database
 export async function getAllUsers(): Promise<User[]> {
-  await ensureDB();
-  const data = await fs.readFile(DB_PATH, 'utf-8');
-  return JSON.parse(data) as User[];
+  // TODO: Ensure DB exists (call ensureDB)
+
+  // TODO: Read the file using fs.readFile
+  // Hint: Use 'utf-8' encoding
+
+  // TODO: Parse the JSON and return as User[]
+  // Hint: JSON.parse()
+
+  return [];
 }
 
 // Find user by username
 export async function findUserByUsername(
   username: string
 ): Promise<User | undefined> {
-  const users = await getAllUsers();
-  return users.find((user) => user.username === username);
+  // TODO: Get all users
+  // TODO: Use .find() to locate user with matching username
+  // Return the user or undefined if not found
+
+  return undefined;
 }
 
-// Create a new user
+// Create a new user (bonus - not required for basic login)
 export async function createUser(userData: User): Promise<User> {
-  const users = await getAllUsers();
-  users.push(userData);
-  await fs.writeFile(DB_PATH, JSON.stringify(users, null, 2), 'utf-8');
+  // TODO: Get all users
+  // TODO: Add new user to the array
+  // TODO: Write updated array back to file
+  // TODO: Return the created user
+
   return userData;
 }
