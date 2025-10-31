@@ -32,11 +32,8 @@ export async function getAllUsers(): Promise<User[]> {
 export async function findUserByUsername(
   username: string
 ): Promise<User | undefined> {
-  // TODO: Get all users
-  // TODO: Use .find() to locate user with matching username
-  // Return the user or undefined if not found
-
-  return undefined;
+  const users = await getAllUsers();
+  return users.find((user) => user.username === username);
 }
 
 // Create a new user (bonus - not required for basic login)
