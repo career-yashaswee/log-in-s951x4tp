@@ -16,16 +16,23 @@ interface User {
 
 function Dashboard() {
   const navigate = useNavigate();
+  const userJson = localStorage.getItem('user');
+  const user: User | null = userJson ? JSON.parse(userJson) : null;
 
   // TODO: Get user data from localStorage
   // Hint: localStorage.getItem('user')
-  const user: User | null = null;
+  // const user: User | null = null;
 
   useEffect(() => {
-    // TODO: Redirect to login if no user data
-    // Hint: Use navigate('/login') if user is null
-    // Don't forget the dependency array!
-  }, []);
+    // Redirect to login if no user data
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user) {
+    return null;
+  }
 
   if (!user) {
     return null;
