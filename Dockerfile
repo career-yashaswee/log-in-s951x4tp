@@ -10,8 +10,10 @@ RUN npm ci
 COPY client/ ./client/
 COPY server/ ./server/
 COPY data/ ./data/
+COPY tests/ ./tests/
 COPY vite.config.ts ./
 COPY jest.config.js ./
+COPY eslint.config.js ./
 COPY tsconfig.json ./
 COPY playwright.config.ts ./
 COPY components.json ./
