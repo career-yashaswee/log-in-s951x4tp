@@ -38,10 +38,10 @@ export async function findUserByUsername(
 
 // Create a new user (bonus - not required for basic login)
 export async function createUser(userData: User): Promise<User> {
-  // TODO: Get all users
-  // TODO: Add new user to the array
-  // TODO: Write updated array back to file
-  // TODO: Return the created user
+  const users = await getAllUsers();
+  users.push(userData);
+  await fs.writeFile(DB_PATH, JSON.stringify(users, null, 2), 'utf-8');
+  return userData;
 
   return userData;
 }
