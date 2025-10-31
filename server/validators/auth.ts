@@ -12,8 +12,5 @@ export const loginSchema = z.object({
 });
 
 export const validateLogin = (data: unknown) => {
-  // TODO: Use the schema to validate the data
-  // Hint: Use safeParse() method
-  // Return the result
   return loginSchema.safeParse(data);
 };
