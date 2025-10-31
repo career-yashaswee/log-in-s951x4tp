@@ -42,16 +42,7 @@ function Dashboard() {
             <CardDescription>Welcome to your dashboard.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button
-              variant="destructive"
-              className="w-full"
-              onClick={() => {
-                // TODO: Clear user data from localStorage
-                // Hint: localStorage.removeItem('user')
-                // TODO: Navigate back to login
-                // Hint: navigate('/login')
-              }}
-            >
+            <Button variant="destructive" className="w-full" onClick={() => {}}>
               Logout
             </Button>
           </CardContent>
