@@ -7,8 +7,8 @@ import { z } from 'zod';
 // Hint: Use z.object() with z.string().min()
 
 export const loginSchema = z.object({
-  // TODO: Add username validation
-  // TODO: Add password validation
+  username: z.string().min(1, 'Username is required'),
+  password: z.string().min(1, 'Password is required'),
 });
 
 export const validateLogin = (data: unknown) => {
