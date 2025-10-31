@@ -4,8 +4,6 @@ import { toast } from 'sonner';
 import { LoginForm } from '@/components/login-form';
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
