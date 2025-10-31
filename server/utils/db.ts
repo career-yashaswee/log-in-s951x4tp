@@ -23,15 +23,9 @@ async function ensureDB(): Promise<void> {
 
 // Read all users from the database
 export async function getAllUsers(): Promise<User[]> {
-  // TODO: Ensure DB exists (call ensureDB)
-
-  // TODO: Read the file using fs.readFile
-  // Hint: Use 'utf-8' encoding
-
-  // TODO: Parse the JSON and return as User[]
-  // Hint: JSON.parse()
-
-  return [];
+  await ensureDB();
+  const data = await fs.readFile(DB_PATH, 'utf-8');
+  return JSON.parse(data) as User[];
 }
 
 // Find user by username
