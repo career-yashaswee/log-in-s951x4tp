@@ -34,7 +34,6 @@ function Login() {
       // Store user data in localStorage
       localStorage.setItem('user', JSON.stringify(data.user));
 
-      // Navigate to dashboard
       navigate('/dashboard');
     } catch {
       toast.error('Network error. Please try again.');

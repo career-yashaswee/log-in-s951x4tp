@@ -19,12 +19,7 @@ function Dashboard() {
   const userJson = localStorage.getItem('user');
   const user: User | null = userJson ? JSON.parse(userJson) : null;
 
-  // TODO: Get user data from localStorage
-  // Hint: localStorage.getItem('user')
-  // const user: User | null = null;
-
   useEffect(() => {
-    // Redirect to login if no user data
     if (!user) {
       navigate('/login');
     }
