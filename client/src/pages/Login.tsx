@@ -25,13 +25,11 @@ function Login() {
       const data = await response.json();
 
       if (!response.ok) {
-        // Show error toast for invalid credentials
         toast.error(data.error || 'Login failed');
         setLoading(false);
         return;
       }
 
-      // Store user data in localStorage
       localStorage.setItem('user', JSON.stringify(data.user));
 
       navigate('/dashboard');
