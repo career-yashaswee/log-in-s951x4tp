@@ -4,31 +4,41 @@ import { toast } from 'sonner';
 import { LoginForm } from '@/components/login-form';
 
 function Login() {
-  // TODO: Add state management for username, password, and loading
-  // Hint: Use useState hook for each
-
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // TODO: Set loading state to true
+    setLoading(true);
 
     try {
-      // TODO: Make a POST request to '/api/auth/login'
-      // Hint: Use fetch() with method: 'POST', headers, and body
-      // The body should be JSON with username and password
-      // TODO: Parse the response as JSON
-      // TODO: Check if response.ok
-      // If not ok: show error toast and set loading to false, then return
-      // Hint: toast.error() for errors
-      // TODO: Store user data in localStorage
-      // Hint: localStorage.setItem('user', JSON.stringify(data.user))
-      // TODO: Navigate to dashboard
-      // Hint: navigate('/dashboard')
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Show error toast for invalid credentials
+        toast.error(data.error || 'Login failed');
+        setLoading(false);
+        return;
+      }
+
+      // Store user data in localStorage
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      // Navigate to dashboard
+      navigate('/dashboard');
     } catch {
-      // TODO: Handle network errors
-      // Hint: Show error toast and set loading to false
+      toast.error('Network error. Please try again.');
+      setLoading(false);
     }
   };
 
